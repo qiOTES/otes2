@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>管理员基础权限</title>
+    <link rel="stylesheet" type="text/css" href="css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="css/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.easyui.min.js"></script>
+
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+
+        }
+        a{
+            text-decoration:none;
+        }
+        ul,ol,li{
+            list-style:none;
+        }
+        .easyui-accordion a{
+            color: #0636ff;
+        }
+        /*---------------------------------头部------------------------------------*/
+        .ld_header{
+            height: 106px;
+            border-bottom: 2px solid #336699;
+            /* background-color: black;*/
+        }
+        .ld_header_in{
+            width: 1000px;
+            margin: 0 auto;
+
+        }
+        .ld_logo{
+            padding-top: 22px;
+            overflow: hidden;
+            text-shadow: #4b23ff 0 0 10px;
+            color:white;
+            font-size:60px;
+            letter-spacing:10px;
+            font-family: italic;
+        }
+        .Menu{
+            /*background-color: #0000FF;*/
+            position: absolute;
+            top: 130px;
+            left: 330px;
+        }
+    </style>
+    <script>
+        function menuHandler(item){
+            $('#log').prepend('<p>Click Item: '+item.name+'</p>');
+        }
+        $(function(){
+            $(document).bind('contextmenu',function(e){
+                e.preventDefault();
+                $('#mm').menu('show', {
+                    left: e.pageX,
+                    top: e.pageY
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        var index = 0;
+        function addPanel(){
+            index++;
+            $('#tt').tabs('add',{
+                title: 'Tab'+index,
+                content: '<div style="padding:10px">Content'+index+'</div>',
+                closable: true
+            });
+        }
+        function removePanel(){
+            var tab = $('#tt').tabs('getSelected');
+            if (tab){
+                var index = $('#tt').tabs('getTabIndex', tab);
+                $('#tt').tabs('close', index);
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="ld_header">
+    <div class="ld_header_in">
+        <div class="ld_logo">
+            <strong>  教师评价系统</strong>
+        </div>
+    </div>
+</div>
+<div style="margin:-7px 0 10px 0;"></div>
+<div class="easyui-accordion" style="width:300px;height:600px;">
+    <div title="学生操作" data-options="iconCls:'icon-ok'" style="overflow:auto;paddin3g:10px;">
+        <p style="margin-top: 10px;height: 40px;margin-left: 8px;font-size: 20px;" ><a href="#" >学生评教</a></p>
+        <p style="margin-left: 8px;font-size: 20px"><a href="#">修改登陆密码</a></p>
+    </div>
+    <div title="教师操作" data-options="iconCls:'icon-ok'" style="padding:10px;">
+        <p style="margin-top: 10px;height: 40px;margin-left: 8px;font-size: 20px" ><a href="#">教师查看评教</a></p>
+        <p style="margin-left: 8px;font-size: 20px;height: 40px;"><a href="#">教师互评</a></p>
+        <p style="margin-left: 8px;font-size: 20px"><a href="#">修改登陆密码</a></p>
+    </div>
+    <div title="系领导操作" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
+        <p style="margin-top: 10px;height: 40px;margin-left: 8px;font-size: 20px" ><a href="#">查看教师评价</a></p>
+        <p style="margin-left: 8px;font-size: 20px"><a href="#">修改登陆密码</a></p>
+    </div>
+    <div title="管理员操作" data-options="iconCls:'icon-ok'" style="padding:10px;">
+        <ul class="easyui-tree">
+            <li>
+                <span>教师</span>
+                <ul>
+                            <li>教师个人信息表</li>
+                            <li>教师评价表</li>
+                            <li>教师互评表</li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="easyui-tree">
+            <li>
+                <span>学生</span>
+                <ul>
+                    <li>学生个人信息表</li>
+                    <li>学生参评表</li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="easyui-tree">
+            <li>
+                <span>系领导</span>
+                <ul>
+                    <li>系领导信息表</li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="easyui-tree">
+            <li>
+                <span>评教</span>
+                <ul>
+                    <li>评教标准表</li>
+                    <li>评教时间管理表</li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+    <div class="easyui-layout" style=" position:absolute;top: 130px;left:330px;width: 1400px;height:600px;">
+        <div data-options="region:'center'" title="Center">
+            <div id="tt"  class="easyui-tabs" data-options="tools:'#tab-tools'"  style="width: 1399px;padding: 1px">
+            </div>
+            <div id="tab-tools">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" onclick="addPanel()"></a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'" onclick="removePanel()"></a>
+            </div>
+
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
